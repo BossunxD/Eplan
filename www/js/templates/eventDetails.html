@@ -1,0 +1,39 @@
+<ion-view hide-nav-bar="true">
+<ion-header-bar align-title="left" class="bar-positive">
+  <div class="buttons">
+    <button class="button button-icon icon ion-ios7-arrow-left" ng-click="goBack()">&nbsp;<span class="padding-left">{{event.name}}</span></button>
+    <h1 class="title">&nbsp;</h1>
+    <button class="button button-icon icon ion-compose" ng-click="openModalEditEvent({{event.ID}})"></button>
+  </div>
+</ion-header-bar>
+<ion-content>
+
+  <div class="list card card-condensed">
+    <div class="item item-icon-left">
+      <i class="icon ion-cash half-opacity"></i>
+      $3700
+    </div>  
+    <a href="http://maps.google.com/?q={{event.location}}" class="item item-icon-left">
+      <i class="icon ion-ios7-location-outline half-opacity"></i>
+      {{event.location}}
+    </a>
+    <div class="item item-icon-left">
+      <i class="icon ion-ios7-calendar-outline half-opacity"></i>
+      {{event.date}} @ {{event.time}}
+    </div>
+    <div class="item item-icon-left">
+      <i class="icon ion-ios7-paper-outline half-opacity"></i>
+      {{event.details}}
+    </div>
+  </div>
+  
+  <p class="padding-horizontal">
+    <button class="button button-block button-positive" ng-click="addSuppliers()">Add Suppliers</button>  
+  </p>
+  
+  <event-detail-card ng-repeat="eSupplier in eventSuppliers"></event-detail-card>
+  
+  <br>
+  
+</ion-content>
+</ion-view>

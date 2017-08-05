@@ -1,0 +1,83 @@
+<ion-view hide-nav-bar="true">
+<ion-header-bar align-title="left" class="bar-positive">
+  <div class="buttons">
+    <button class="button button-icon icon ion-ios7-arrow-left" ng-click="goBack()">&nbsp;<span class="padding-left">{{supplier.name}}</span></button>
+    <h1 class="title">&nbsp;</h1>
+    <button class="button button-icon icon ion-compose" ng-click="openModalSupplier()"></button>
+  </div>
+</ion-header-bar>
+<div class="bar bar-loading bar-stable" ng-if="isLoading">
+  <i class="icon ion-loading-c"></i> Loading...
+</div>
+<ion-content stellax>
+
+  <div class="list card parallax-card" data-stellar-ratio="0.35">
+      <div id="map" data-tap-disabled="true"></div>
+  </div>
+  
+  <div class="list card margin-zero">
+    <a href="http://maps.google.com/?q={{supplier.address}}" class="item item-icon-left item-condensed">
+      <i class="icon ion-ios7-location-outline half-opacity"></i>
+      {{supplier.address}}
+    </a>
+  
+    <a href="tel:{{supplier.phone}}" class="item item-icon-left item-condensed">
+      <i class="icon ion-ios7-telephone-outline half-opacity"></i>
+      {{supplier.phone}}
+    </a>
+  
+    <a href="mailto:{{supplier.email}}" class="item item-icon-left item-condensed">
+      <i class="icon ion-ios7-at-outline half-opacity"></i>
+      {{supplier.email}}
+    </a>
+  
+    <a href="{{supplier.url}}" class="item item-icon-left item-condensed">
+      <i class="icon ion-ios7-world-outline half-opacity"></i>
+      {{supplier.url}}
+    </a>
+  </div>
+  
+  <div class="list card margin-zero padding-horizontal">
+    <!--<p class="padding-horizontal">-->
+    <button class="button button-block button-balanced" ng-click="openPopover($event)">Add to event</button>
+    <button class="button button-block button-positive" ng-click="loadFeed('{{supplier.feedrss}}', false)">Load RSS feed</button>  
+  </div>
+  <!--
+  <div class="list card" ng-show="isLoading">
+    <div class="item item-icon-left">
+      <i class="icon ion-loading-c"></i>
+      Loading...
+    </div>
+  </div>-->
+
+  <div class="list card" ng-repeat="entry in feed_result.entries" ng-cloak>
+  
+    <a class="item" href="{{entry.link}}">
+      <h2>{{entry.title}}</h2>
+      <p>{{entry.publishedDate}}</p>
+    </a>
+  
+    <div class="item item-body">
+      <img class="full-image" ng-repeat="thumbnail in mediaOne(entry).thumbnails" ng-src="{{thumbnail.url}}">
+      <p ng-bind-html="entry.content" class="feed-content"></p>
+    </div>
+  
+    <div class="item tabs tabs-secondary tabs-icon-left">
+      <a class="tab-item" href="#">
+        <i class="icon ion-thumbsup"></i>
+        Like
+      </a>
+      <a class="tab-item" href="#">
+        <i class="icon ion-chatbox"></i>
+        Comment
+      </a>
+      <a class="tab-item" href="#">
+        <i class="icon ion-share"></i>
+        Share
+      </a>
+    </div>
+  
+  </div>
+
+</ion-content>
+</ion-view>
